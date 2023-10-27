@@ -32,8 +32,8 @@ button(username=coffee_key, floating=True, width=221)
 
 st.header('PDF Genie')
 st.write('질문하실 PDF를 업로드해주세요.')
-st.write('---')
 openai_api_key = st.text_input('OPENAI API KEY를 입력해주세요.', type="password")
+st.write('---')
 
 
 # Make a temp folder can store uploaded file.
