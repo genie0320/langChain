@@ -25,7 +25,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # coffee_key = os.getenv("BUY_ME_A_COFFEE")
 # open_api_key = os.getenv("OPENAI_API_KEY")
 coffee_key = st.secrets["BUY_ME_A_COFFEE"]
-open_api_key = st.secrets["OPENAI_API_KEY"]
+# open_api_key = st.secrets["OPENAI_API_KEY"]
 
 button(username=coffee_key, floating=True, width=221)
 
@@ -33,10 +33,10 @@ button(username=coffee_key, floating=True, width=221)
 st.header('PDF Genie')
 st.write('질문하실 PDF를 업로드해주세요.')
 st.write('---')
+openai_api_key = st.text_input('OPENAI API KEY를 입력해주세요.', type="password")
 
 
-# # Make a temp folder can store uploaded file.
-
+# Make a temp folder can store uploaded file.
 def pdf_to_document(uploaded_file):
     temp_dir = tempfile.TemporaryDirectory()
     temp_filepath = os.path.join(temp_dir.name, uploaded_file.name)
@@ -85,10 +85,11 @@ with st.sidebar:
             texts = text_splitter.split_documents(pages)
 
             # embedding and store
-            embedding_model = OpenAIEmbeddings()
+            embedding_model = OpenAIEmbeddings(openai_api_key=openai_api_key)
             db = Chroma.from_documents(texts, embedding_model)
 
             st.write(bytes_data.name, 'File DONE')
+
 
 # show input box
 question = st.text_input('질문을 입력해주세요.')
@@ -97,6 +98,7 @@ if st.button('궁금해', type="primary"):
         chat_box = st.empty()
         stream_hander = StreamingHandler(chat_box)
         myllm = ChatOpenAI(
+            openai_api_key=openai_api_key,
             temperature=0,
             max_tokens=100,
             streaming=True,
