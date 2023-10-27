@@ -24,6 +24,8 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # load_dotenv()
 # coffee_key = os.getenv("BUY_ME_A_COFFEE")
 # open_api_key = os.getenv("OPENAI_API_KEY")
+coffee_key = st.secrets["BUY_ME_A_COFFEE"]
+open_api_key = st.secrets["OPENAI_API_KEY"]
 
 button(username=coffee_key, floating=True, width=221)
 
