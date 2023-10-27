@@ -1,25 +1,29 @@
-from langchain.callbacks.base import BaseCallbackHandler
-from typing import Any, Optional, Union
-from uuid import UUID
-from dotenv import load_dotenv
-from langchain.schema.output import ChatGenerationChunk, GenerationChunk
-import streamlit as st
-from langchain.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
-import openai
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import RetrievalQA
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from streamlit_extras.buy_me_a_coffee import button
-
-import tempfile
 import os
+import tempfile
+from streamlit_extras.buy_me_a_coffee import button
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from langchain.chains import RetrievalQA
+from langchain.chat_models import ChatOpenAI
+import openai
+from langchain.vectorstores import Chroma
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.document_loaders import PyPDFLoader
+import streamlit as st
+from langchain.schema.output import ChatGenerationChunk, GenerationChunk
+from uuid import UUID
+from typing import Any, Optional, Union
+from langchain.callbacks.base import BaseCallbackHandler
 
-load_dotenv()
-coffee_key = os.getenv("BUY_ME_A_COFFEE")
-open_api_key = os.getenv("OPENAI_API_KEY")
+# 버전때문에 발생하는 sql 오류 해결 코드
+import sys
+__import__('pysqlite3')
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+# from dotenv import load_dotenv
+# load_dotenv()
+# coffee_key = os.getenv("BUY_ME_A_COFFEE")
+# open_api_key = os.getenv("OPENAI_API_KEY")
 
 button(username=coffee_key, floating=True, width=221)
 
