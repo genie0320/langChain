@@ -1,8 +1,15 @@
 ### Custom ###
+*.ipynb
+_*/*
+_*.*
+.*/*
+.*.*
 .env
-temp/
-openai-env/
+genv/
 .vscode/
+openai-env/
+.streamlit/
+*.txt
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
