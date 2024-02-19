@@ -25,4 +25,3 @@ def main():
 
     st.title('_Private Data :red[QA chat]_:books:')
     
-    # This is test
