@@ -1,0 +1,9 @@
+tiktoken 
+streamlit 
+langchain 
+langchain-openai 
+icecream
+loguru
+sentence-transformers
+faiss-cpu
+# faiss-gpu
